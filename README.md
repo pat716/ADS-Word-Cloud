@@ -2,7 +2,7 @@
 
 After building, from "out/production/Word\ Cloud/", run "java WordCloudDriver " followed by the desired arguments via command line. The arguments should be given in pairs of two, with the first being the name of the argument and the second being the value. The argument names are as follows:
 
-### "-file" - String describing a filename whose text will be used to generate the word builder. ("-file test.txt")
+##### "-file" - String describing a filename whose text will be used to generate the word builder. ("-file test.txt")
 ### "-string" - String containing text that will be used to generate the word builder. ("-string 'Hello Hello World'")
 ### "-prefix" - String with a prefix that all words must match to be included in the word cloud. ("-prefix sa")
 # "-minfreq" - Integer corresponding to minimum required appearances a word must have to be included in the word cloud. ("-minfreq 10")
