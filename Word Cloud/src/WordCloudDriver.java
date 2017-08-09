@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by psweeney on 8/8/17.
@@ -16,11 +13,9 @@ public class WordCloudDriver {
             builder.processArg(argKey, argValue);
         }
 
-        System.out.println(builder.getInputText());
-        System.out.println(builder.getPrefixFilter());
-        System.out.println(builder.getMinFreqThreshold());
-        System.out.println(builder.getMaxFreqThreshold());
-        System.out.println(builder.getMaxWordCount());
-        System.out.println(builder.isAlphabeticSorting());
+        WordCloud wordCloud = builder.generateWordCloud();
+        for(Map.Entry<String, Integer> wordCloudEntry : wordCloud){
+            System.out.println("\"" + wordCloudEntry.getKey() + "\": " + wordCloudEntry.getValue());
+        }
     }
 }

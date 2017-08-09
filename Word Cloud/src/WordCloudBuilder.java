@@ -1,5 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by psweeney on 8/8/17.
@@ -7,9 +11,9 @@ import java.io.FileReader;
 public class WordCloudBuilder {
     private String inputText = null;
     private String prefixFilter = null;
-    private int minFreqThreshold = 0;
-    private int maxFreqThreshold = 0;
-    private int maxWordCount = 0;
+    private int minFreqThreshold = -1;
+    private int maxFreqThreshold = -1;
+    private int maxWordCount = -1;
     private boolean alphabeticSorting = false;
 
     public void processArg(String argKey, String argValue){
@@ -32,7 +36,7 @@ public class WordCloudBuilder {
             case "-maxword":
                 setMaxWordCount(Integer.parseInt(argValue));
                 break;
-            case "-alphsort":
+            case "-alphasort":
                 setAlphabeticSorting(Boolean.parseBoolean(argValue));
                 break;
         }
@@ -99,5 +103,12 @@ public class WordCloudBuilder {
 
     public boolean isAlphabeticSorting() {
         return alphabeticSorting;
+    }
+
+    public WordCloud generateWordCloud(){
+        List<String> words = Arrays.asList(inputText.split(" "));
+        WordListParser parser = new WordListParser(words, prefixFilter, maxFreqThreshold);
+        parser.applyPostFilters(minFreqThreshold, maxWordCount, alphabeticSorting);
+        return parser.buildWordCloudFromCurrentState();
     }
 }
